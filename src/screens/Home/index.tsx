@@ -6,7 +6,7 @@ export default function Home({navigation}) {
         <>
             <View >
                 <Image
-                    source={require("../../assets/Slogan-removebg-preview.png")}
+                    source={require("../../assets/LogoApp1.png")}
                 />
                 <View>
                     <View >

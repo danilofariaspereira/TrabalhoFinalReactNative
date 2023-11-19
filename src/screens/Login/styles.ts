@@ -14,12 +14,14 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: colors.primary,
     flex: 1,
-    gap: 20
+    gap: 20,
+  
   },  
   image: {
-    width: 100,
-    height: 100,
-    marginBottom: 80
+    width: 120,
+    height: 120,
+    marginBottom: 80,
+   
   },
   textInput:{
     width: '80%',
@@ -41,7 +43,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 12,
     color: "tomato",
-    marginTop: 40,
+    marginTop: -90,
   }
   // field: {
   //   paddingVertical: 14,

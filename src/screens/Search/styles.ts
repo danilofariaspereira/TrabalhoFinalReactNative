@@ -11,44 +11,46 @@ export const colors = {
 export const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     backgroundColor: colors.primary,
     flex: 1,
-    gap: 20,
-  
+    padding: 20,
   },
   image: {
     width: 120,
     height: 120,
-    marginBottom: 50,
+    marginBottom: 20,
+    resizeMode: "contain", 
+    marginTop:10,
   },
   field: {
-    padding: 15,
     paddingVertical: 14,
     position: "relative",
   },
-
-  heading: {
-    fontSize: 32,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: colors.secondary,
-    marginTop: -60,
-  },
-  button: {
-    borderRadius: 5,
+  searchContainer: {
+    flexDirection: "row",
     alignItems: "center",
+    marginBottom: 15,
+  },
+  input: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: colors.tertiary,
+    borderRadius: 5,
+    padding: 15,
+    color: colors.secondary,
+  },
+  searchButton: {
     backgroundColor: colors.tertiary,
     padding: 15,
+    borderRadius: 5,
+    width: 300,
+    alignItems: "center",
   },
-  buttonText: {
+  searchButtonText: {
     textAlign: "center",
     fontWeight: "bold",
     color: colors.primary,
     fontSize: 15,
-  },  
-  text: {
-    color: colors.secondary,
-    fontSize: 15,
-  }
+  },
 });

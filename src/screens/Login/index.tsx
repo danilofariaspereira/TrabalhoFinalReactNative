@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Image, KeyboardAvoidingView, Platform } from "react-native";
 
 import { styles } from "./styles";
-import Logo from '../../assets/logoApp.png'
+import Logo from '../../assets/LogoApp1.png'
 import { InputTextLogin } from "../../components/InputTextLogin";
 import { PrimaryButton } from "../../components/PrimaryButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -78,7 +78,6 @@ export default function Login( {navigation}) {
 
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.container}
       >
         <Image source={Logo} style={styles.image} />

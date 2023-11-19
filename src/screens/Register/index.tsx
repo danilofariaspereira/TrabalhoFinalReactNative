@@ -10,7 +10,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import Logo from '../../assets/logoApp.png'
+import Logo from '../../assets/LogoApp1.png'
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { InputTextLogin } from "../../components/InputTextLogin";
@@ -63,7 +63,6 @@ export default function Register  ({navigation}) {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.container}
       >
         <Image source={Logo} style={styles.image} />
@@ -71,8 +70,8 @@ export default function Register  ({navigation}) {
         <View style={styles.textInput}>
           <InputTextLogin title="Nome de usuário" value={username} onChangeText={setUsername}/>
           <InputTextLogin title="Email" value={email} onChangeText={setEmail}/>
-          <InputTextLogin title="Senha" value={password} onChangeText={setPassword} secureContent={showPassword}/>
-          <InputTextLogin title="Confirmar Senha" value={rePassword} onChangeText={setRePassword} secureContent={showPassword}/>
+          <InputTextLogin title="Senha" value={password} onChangeText={setPassword} secureContent={showPassword}onPress={setShowPassword}/>
+          <InputTextLogin title="Confirmar Senha" value={rePassword} onChangeText={setRePassword} secureContent={showPassword} onPress={setShowPassword}/>
         </View>
         <PrimaryButton onPress={handleSubmit} title="Cadastrar"/>
         <View style={styles.anyAccount}>

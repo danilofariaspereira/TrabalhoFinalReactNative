@@ -4,6 +4,7 @@ import login from '../screens/Login/index';
 import cadastro from '../screens/Register/index';
 import welcome from '../screens/Welcome/index';
 import home from '../screens/Home'
+import search from '../screens/Search';
 
 
 const Stack = createNativeStackNavigator();
@@ -37,6 +38,14 @@ export default function Routes() {
                 component={welcome}
                 options={{ headerShown: false }}
             />
+
+            <Stack.Screen
+
+                name="search"
+                component={search}
+                options={{ headerShown: false }}
+            />
+
 
         </Stack.Navigator >
 
