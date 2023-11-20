@@ -15,8 +15,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { InputTextLogin } from "../../components/InputTextLogin";
 import { PrimaryButton } from "../../components/PrimaryButton";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function Register  ({navigation}) {
+export default function Register({ navigation }) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -24,6 +25,27 @@ export default function Register  ({navigation}) {
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => {
+        setKeyboardVisible(true);
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        setKeyboardVisible(false);
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []); // ajuste no keyboard
 
   const validarEmail = (email: string) => {
     var re =
@@ -34,6 +56,16 @@ export default function Register  ({navigation}) {
   const validarSenha = (senha: string) => {
     return senha.length >= 6;
   };
+
+  const storeData = async (username, email, password) => {
+    try {
+      const jsonValue = JSON.stringify({ username, email, password });
+      await AsyncStorage.setItem('user-data', jsonValue);
+    } catch (e) {
+      // saving error
+      console.log(e);
+    }
+  }; // ajuste para guardar no StorageData
 
   const handleSubmit = () => {
     if (
@@ -53,6 +85,7 @@ export default function Register  ({navigation}) {
       setMessage("As senhas não coincidem!");
     } else {
       setMessage("");
+      storeData(username, email, password); //quais dados estão armazendo
       setPassword("");
       setUsername("");
       setEmail("");
@@ -68,12 +101,12 @@ export default function Register  ({navigation}) {
         <Image source={Logo} style={styles.image} />
         <Text style={styles.message}>{message}</Text>
         <View style={styles.textInput}>
-          <InputTextLogin title="Nome de usuário" value={username} onChangeText={setUsername}/>
-          <InputTextLogin title="Email" value={email} onChangeText={setEmail}/>
-          <InputTextLogin title="Senha" value={password} onChangeText={setPassword} secureContent={showPassword}onPress={setShowPassword}/>
-          <InputTextLogin title="Confirmar Senha" value={rePassword} onChangeText={setRePassword} secureContent={showPassword} onPress={setShowPassword}/>
+          <InputTextLogin title="Nome de usuário" value={username} onChangeText={setUsername} />
+          <InputTextLogin title="Email" value={email} onChangeText={setEmail} />
+          <InputTextLogin title="Senha" value={password} onChangeText={setPassword} secureContent={showPassword} onPress={setShowPassword} />
+          <InputTextLogin title="Confirmar Senha" value={rePassword} onChangeText={setRePassword} secureContent={showPassword} onPress={setShowPassword} />
         </View>
-        <PrimaryButton onPress={handleSubmit} title="Cadastrar"/>
+        <PrimaryButton onPress={handleSubmit} title="Cadastrar" />
         <View style={styles.anyAccount}>
           <Text style={styles.text}>Já tem uma conta?</Text>
           <TouchableOpacity onPress={() => navigation.navigate('login')}>
