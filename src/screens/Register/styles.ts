@@ -46,6 +46,9 @@ export const styles = StyleSheet.create({
     marginTop: -90,
 
   }
+
+  //verificar se precisa de algo dessas estilizações (Rodrigo)
+  
   // field: {
   //   paddingVertical: 14,
   // },

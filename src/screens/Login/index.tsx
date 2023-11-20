@@ -162,6 +162,8 @@ export default function Login({ navigation }) {
   )
 }
 
+//verificar se precisa de algo desses scripts (Rodrigo)
+
     // <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
     //   <KeyboardAvoidingView
     //     style={styles.container}
