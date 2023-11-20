@@ -15,28 +15,28 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     flex: 1,
     gap: 20
-    
-  },  
+
+  },
   image: {
     width: 120,
     height: 120,
     marginBottom: 80,
-    marginTop:-80,
+    marginTop: 60,
   },
-  textInput:{
+  textInput: {
     width: '80%',
     gap: 20
   },
-  anyAccount:{
+  anyAccount: {
     flexDirection: "row",
     gap: 10,
     alignItems: "flex-start",
     width: '80%'
   },
-  text:{
+  text: {
     color: 'white'
   },
-  textRegister:{
+  textRegister: {
     color: colors.tertiary
   },
   message: {
@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     color: "tomato",
     marginTop: -90,
-    
+
   }
   // field: {
   //   paddingVertical: 14,

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Image, KeyboardAvoidingView, Platform } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Image, KeyboardAvoidingView, Platform } from "react-native";
 
 import { styles } from "./styles";
 import Logo from '../../assets/LogoApp1.png'
 import { InputTextLogin } from "../../components/InputTextLogin";
 import { PrimaryButton } from "../../components/PrimaryButton";
+import { basic, form } from "./styles";
+import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -99,23 +101,86 @@ export default function Login({ navigation }) {
 
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <KeyboardAvoidingView
-        style={styles.container}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={basic.container}
       >
-        <Image source={Logo} style={styles.image} />
-        <Text style={styles.message}>{message}</Text>
-        <View style={styles.textInput}>
-          <InputTextLogin title="Email" value={email} onChangeText={setEmail} />
-          <InputTextLogin title="Senha" value={password} secureContent={showPassword} onChangeText={setPassword} onPress={setShowPassword} />
-        </View>
-        <PrimaryButton onPress={handleSubmit} title="Entrar" />
-        <View style={styles.anyAccount}>
-          <Text style={styles.text}>Não tem uma conta?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('cadastro')}>
-            <Text style={styles.textRegister}>Cadastrar-se</Text>
-          </TouchableOpacity>
+        {!isKeyboardVisible && (
+          <Image
+            source={require("../../assets/LogoApp1.png")}
+            style={basic.image}
+          />
+        )}
+        <View style={[basic.container]}>
+          <Text style={form.message}>{message}</Text>
+
+          <View style={form.field}>
+            <Text style={form.label}>Email</Text>
+            <TextInput
+              onChangeText={(value) => setEmail(value)}
+              placeholder="Email"
+              style={form.input}
+              value={email}
+              autoCapitalize="none"
+            />
+          </View>
+
+          <View style={form.field}>
+            <Text style={form.label}>Senha</Text>
+            <TextInput
+              onChangeText={(value) => setPassword(value)}
+              placeholder="Senha"
+              style={form.input}
+              secureTextEntry={!showPassword}
+              value={password}
+              autoCapitalize="none"
+            />
+            <Ionicons
+              onPress={() => setShowPassword(!showPassword)}
+              style={form.eye}
+              name={showPassword ? "md-eye-off" : "md-eye"}
+            />
+          </View>
+
+          <View style={form.field}>
+            <TouchableOpacity onPress={handleSubmit} style={form.button}>
+              <Text style={form.buttonText}>Entrar</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={[form.field, form.field1]}>
+            <Text style={form.text}>Não tem uma conta?</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('cadastro')}
+              style={form.button1}
+            >
+              <Text style={form.buttonText1}>Cadastrar-se</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
+  )
+}
+
+    // <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    //   <KeyboardAvoidingView
+    //     style={styles.container}
+    //   >
+    //     <Image source={Logo} style={styles.image} />
+    //     <Text style={styles.message}>{message}</Text>
+    //     <View style={styles.textInput}>
+    //       <InputTextLogin title="Email" value={email} onChangeText={setEmail} />
+    //       <InputTextLogin title="Senha" value={password} secureContent={showPassword} onChangeText={setPassword} onPress={setShowPassword} />
+    //     </View>
+    //     <PrimaryButton onPress={handleSubmit} title="Entrar" />
+    //     <View style={styles.anyAccount}>
+    //       <Text style={styles.text}>Não tem uma conta?</Text>
+    //       <TouchableOpacity onPress={() => navigation.navigate('cadastro')}>
+    //         <Text style={styles.textRegister}>Cadastrar-se</Text>
+    //       </TouchableOpacity>
+    //     </View>
+    //   </KeyboardAvoidingView>
+    // </TouchableWithoutFeedback>
 
     // <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
     //   <View
@@ -175,7 +240,7 @@ export default function Login({ navigation }) {
     //     </View>
     //   </View>
     // </TouchableWithoutFeedback>
-  );
-};
+//   );
+// };
 
 
