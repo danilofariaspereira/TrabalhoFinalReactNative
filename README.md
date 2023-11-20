@@ -9,3 +9,6 @@ Navigation-> npm install @react-navigation/native npx expo install react-native-
 Axioss -> npm install axios
 
 
+-------------------
+
+para rodar --> npx expo start
