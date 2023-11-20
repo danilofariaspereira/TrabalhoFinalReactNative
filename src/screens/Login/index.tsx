@@ -72,7 +72,7 @@ export default function Login({ navigation }) {
       if (user !== null) {
         if (email === user.email && password === user.password) {
           setMessage("");
-          navigation.navigate('Welcome');
+          navigation.navigate('welcome');
           setPassword("");
           setEmail("");
         } else {
@@ -89,7 +89,7 @@ export default function Login({ navigation }) {
           setMessage("A senha deve incluir números");
         } else {
           setMessage("");
-          navigation.navigate('welcome');
+          navigation.navigate('Welcome');
           setPassword("");
           setEmail("");
         }
