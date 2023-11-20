@@ -8,12 +8,33 @@ import { PrimaryButton } from "../../components/PrimaryButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-export default function Login( {navigation}) {
+export default function Login({ navigation }) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isKeyboardVisible, setKeyboardVisible] = useState<boolean>(false);
+
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => {
+        setKeyboardVisible(true);
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        setKeyboardVisible(false);
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []); // ajustes no useEffect
 
   const validarEmail = (email: string) => {
     var re =
@@ -21,7 +42,7 @@ export default function Login( {navigation}) {
     return re.test(email);
   };
 
-  const validarSenha = (senha : string) => {
+  const validarSenha = (senha: string) => {
     return senha.length >= 6;
   };
 
@@ -83,13 +104,13 @@ export default function Login( {navigation}) {
         <Image source={Logo} style={styles.image} />
         <Text style={styles.message}>{message}</Text>
         <View style={styles.textInput}>
-          <InputTextLogin title="Email" value={email} onChangeText={setEmail}/>
-          <InputTextLogin title="Senha" value={password} secureContent={showPassword} onChangeText={setPassword} onPress={setShowPassword}/>
+          <InputTextLogin title="Email" value={email} onChangeText={setEmail} />
+          <InputTextLogin title="Senha" value={password} secureContent={showPassword} onChangeText={setPassword} onPress={setShowPassword} />
         </View>
-        <PrimaryButton onPress={handleSubmit} title="Entrar"/>
+        <PrimaryButton onPress={handleSubmit} title="Entrar" />
         <View style={styles.anyAccount}>
           <Text style={styles.text}>Não tem uma conta?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('cadastro')}> 
+          <TouchableOpacity onPress={() => navigation.navigate('cadastro')}>
             <Text style={styles.textRegister}>Cadastrar-se</Text>
           </TouchableOpacity>
         </View>
