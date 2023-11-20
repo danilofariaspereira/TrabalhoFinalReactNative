@@ -85,7 +85,8 @@ export default function Register({ navigation }) {
       setMessage("As senhas não coincidem!");
     } else {
       setMessage("");
-      storeData(username, email, password); //quais dados estão armazendo
+      storeData(username, email, password);
+      navigation.navigate('login'); //quais dados estão armazendo
       setPassword("");
       setUsername("");
       setEmail("");
