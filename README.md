@@ -1,6 +1,6 @@
 # TrabalhoFinal-ReactNative
 
-insatalações depencências:
+insatalações dependências:
 
 Assync -> npx expo install @react-native-async-storage/async-storage
 
