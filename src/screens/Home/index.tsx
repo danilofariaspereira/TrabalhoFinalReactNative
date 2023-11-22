@@ -1,30 +1,48 @@
-import React from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Image, Text, ScrollView } from "react-native";
+import Header from "../../components/Header/index";
+import { styles } from "./styles";
+import React, { useRef, useState } from 'react';
+import Carousel from 'react-native-snap-carousel';
+import Filmes from "../../components/Filmes/index";
 
-export default function Home({navigation}) {
-    return (
+export default function Home() {
+    const data = [
+        { id: '1', source: require('../../assets/aquaman.jpg') },
+        { id: '2', source: require('../../assets/cinepop.jpg') },
+        { id: '3', source: require('../../assets/animes.png') },
+        { id: '4', source: require('../../assets/serie.jpg') },
+    ];
+
+    const carouselRef = useRef(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const renderItem = ({ item }) => (
+        <Image source={item.source} style={styles.image} />
+    );    return (
         <>
-            <View >
-                <Image
-                    source={require("../../assets/LogoApp1.png")}
-                />
-                <View>
-                    <View >
-                        <Text >Filmes On-line aqui</Text>
-                        <Text >
-                            Aqui é a página onde tudo começa!!
-                        </Text>
+            <View style={styles.container}>
+                <Header/>
+            <ScrollView>
+                <View style={styles.filmes}>
+                    <View style={styles.carousel}>
+                    <Carousel
+                        ref={carouselRef}
+                        data={data}
+                        renderItem={renderItem}
+                        sliderWidth={400}
+                        itemWidth={400}
+                        onSnapToItem={(index) => setCurrentIndex(index)}
+                        autoplay={true}
+                        autoplayInterval={8000}
+                        loop={true}
+                        />
                     </View>
-                    <View >
-                        <TouchableOpacity
-                            onPress={() => alert("Em construção!")}
-                            
-                        >
-                            <Text >Assistir</Text>
-                        </TouchableOpacity>
+                    <View style={styles.lancamento}>
+                    <Filmes/>
                     </View>
-                </View>
+                    </View>
+         </ScrollView>
             </View>
         </>
     );
-};
+}
