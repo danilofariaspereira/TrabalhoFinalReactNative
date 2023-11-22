@@ -7,11 +7,12 @@ interface TextInputProps {
   title: string
   value: string
   secureContent?: boolean
+  editable?: boolean
   onChangeText: React.Dispatch<React.SetStateAction<string>>
   onPress?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const InputTextLogin = ({ title, value, secureContent, onChangeText, onPress }: TextInputProps) => {
+export const InputTextLogin = ({ title, value, editable, secureContent, onChangeText, onPress }: TextInputProps) => {
   return (
     title === "Senha" || title === "Confirmar Senha" ? (
       <View>
@@ -24,7 +25,7 @@ export const InputTextLogin = ({ title, value, secureContent, onChangeText, onPr
           value={value}
           autoCapitalize="none"
           onChangeText={onChangeText}
-        />
+                 />
         <Ionicons
           onPress={() => onPress(!secureContent)}
           style={styles.eye}
@@ -41,6 +42,8 @@ export const InputTextLogin = ({ title, value, secureContent, onChangeText, onPr
           value={value}
           autoCapitalize="none"
           onChangeText={onChangeText}
+          editable={editable}
+           
         />
       </View>
     )
