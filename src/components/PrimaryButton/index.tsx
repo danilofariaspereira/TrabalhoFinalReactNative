@@ -1,14 +1,7 @@
 import React from 'react'
 import {
-    View,
     Text,
-    TextInput,
     TouchableOpacity,
-    TouchableWithoutFeedback,
-    Keyboard,
-    Image,
-    KeyboardAvoidingView,
-    Platform,
 } from "react-native";
 import { styles } from './styles';
 

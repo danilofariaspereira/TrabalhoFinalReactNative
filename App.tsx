@@ -1,13 +1,12 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import Routes from './src/routes'
+import { RoutesTypes } from './src/routes';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <StatusBar  barStyle="light-content" />
-      <Routes />
-    </NavigationContainer>
+    <>    
+      <StatusBar style='light' translucent/>
+      <RoutesTypes />
+    </>
   );
 }

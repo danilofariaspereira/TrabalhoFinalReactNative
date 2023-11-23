@@ -4,27 +4,16 @@ export const styles = StyleSheet.create({
     container:{
         zIndex:1,
         width: '100%',
-        height: '8%',
         flexDirection:'row',
-        backgroundColor: '#032541',
-        //backgroundColor: "#FFA500",
+        backgroundColor: '#000',
         justifyContent:'space-between',
-    },
-    button:{
-        width: '13%',
-        marginTop: 15,
-        marginLeft: 25,
+        alignItems: "center",
+        padding: 8
     },
     logo:{
         height: 60,
-        width: 60,
-        marginRight: 20,
-    },
-    usuario:{
-        height: 30,
-        width: 30,
-        marginTop: 15,
-        marginRight: 20,
+        width: 90,
+        marginLeft: 40
     },
     img:{
         flexDirection:'row',
@@ -33,23 +22,26 @@ export const styles = StyleSheet.create({
         width: '20%',
         height: '100%',
     },
-    menuOnPress: {
-        position: 'absolute',
-        top: 40,
-        width: 150,
-        //backgroundColor: "#FFA500",
-        backgroundColor: '#032541',
-        borderRadius: 5,
-        height: 300,
+    input:{
+        backgroundColor: '#424242',
+        height: 35,
+        width: 190,
+        borderRadius: 15,
+        paddingLeft: 10,
+        color: 'white',
+        marginRight: 10
     },
-    menuOption: {
-        flex: 1,
-        flexDirection:'column',
-        fontSize: 17,
-        marginBottom: 8,
-        paddingRight:15,
-        paddingLeft:40,
-        paddingTop:40,
-        color: '#FFFFFF',
-      },
+    icon: {
+        width: 25,
+        height: 25,    
+        marginRight: 5    
+    },
+    search:{
+        flexDirection: "row",
+        alignItems: "center",
+        paddingRight: 5,
+        backgroundColor: '#424242',
+        borderRadius: 15,
+        marginRight: 10
+    }
 });

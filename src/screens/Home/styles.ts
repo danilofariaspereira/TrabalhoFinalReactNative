@@ -4,7 +4,8 @@ export const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#1C1C28',
+        backgroundColor: '#1e1e1e',
+        paddingBottom: 50
     },
     filmes: {
         height: 700,

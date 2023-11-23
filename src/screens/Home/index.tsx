@@ -1,48 +1,85 @@
-import { View, Image, Text, ScrollView } from "react-native";
-import Header from "../../components/Header/index";
+import { View, Image, Text, ScrollView, ActivityIndicator } from "react-native";
+import { Header } from "../../components/Header";
 import { styles } from "./styles";
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Carousel from 'react-native-snap-carousel';
-import Filmes from "../../components/Filmes/index";
+import { Filmes } from "../../components/Filmes";
+import { getGenres, getGenresFilms, getTrendingFilms } from "../../services/apiTMDB";
 
-export default function Home() {
-    const data = [
-        { id: '1', source: require('../../assets/aquaman.jpg') },
-        { id: '2', source: require('../../assets/cinepop.jpg') },
-        { id: '3', source: require('../../assets/animes.png') },
-        { id: '4', source: require('../../assets/serie.jpg') },
-    ];
+export default function Home({ navigation }) {
+    const [listTrending, setListTrendings] = useState([]);
+    const [listGenres, setListGenres] = useState([]);
+    const [listFilmsGenres, setListFilmsGenres] = useState([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const carouselRef = useRef(null);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    useEffect(() => {
+        listTrendingFilms();
+        listByGenres();
+    }, [])
 
-    const renderItem = ({ item }) => (
-        <Image source={item.source} style={styles.image} />
-    );    return (
-        <>
-            <View style={styles.container}>
-                <Header/>
-            <ScrollView>
-                <View style={styles.filmes}>
-                    <View style={styles.carousel}>
-                    <Carousel
-                        ref={carouselRef}
-                        data={data}
-                        renderItem={renderItem}
-                        sliderWidth={400}
-                        itemWidth={400}
-                        onSnapToItem={(index) => setCurrentIndex(index)}
-                        autoplay={true}
-                        autoplayInterval={8000}
-                        loop={true}
-                        />
-                    </View>
-                    <View style={styles.lancamento}>
-                    <Filmes/>
-                    </View>
-                    </View>
-         </ScrollView>
-            </View>
-        </>
+    function listTrendingFilms() {
+        getTrendingFilms()
+            .then(response => {
+                setListTrendings(response.data.results)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
+    }
+
+    function listByGenres() {
+        getGenres()
+            .then(async response => {
+                setListGenres(response.data.genres);
+
+                const promises = response.data.genres.map(async genre => {
+                    try {
+                        const filmsResponse = await getGenresFilms(genre.id);
+                        return filmsResponse.data.results;
+                    } catch (error) {
+                        console.log(error);
+                        return [];
+                    }
+                });
+
+                const filmsForGenres = await Promise.all(promises);
+                setListFilmsGenres(filmsForGenres);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }
+
+    function listDetailsFilms(genreIndex, filmIndex) {
+        const selectedFilm = listFilmsGenres[genreIndex][filmIndex];
+        navigation.navigate('details', { filmDetails: selectedFilm });
+    }
+
+    return (
+        <View style={styles.container}>
+            <Header />
+            <ScrollView showsVerticalScrollIndicator={false}>
+                {isLoading ?
+                    <ActivityIndicator size={"large"} color={'#156'} />
+                    :
+                    <>
+                        {listGenres.map((item, index) => {
+                            const genre = item.name
+                            return (
+                                <View key={`${item.id}`}>
+                                    <Filmes list={listFilmsGenres[index]} onPress={(filmIndex) => listDetailsFilms(index, filmIndex)} genre={genre} />
+                                </View>
+                            )
+                        })}
+                    </>
+                }
+            </ScrollView>
+        </View>
     );
 }

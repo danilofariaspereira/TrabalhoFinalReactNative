@@ -1,52 +1,40 @@
-import { View, Image, Text, ScrollView } from "react-native";
+import { View, Image, Text, ScrollView, FlatList, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 
-export default function Filmes() {
+interface FlatListFilmsProps {
+  list: Array<{
+    poster_path: string
+    title: string
+  }>
+  onPress?: (index: number) => void;
+  genre: string
+}
 
-  const data = [
-    {
-      id: "1",
-      filme: "Top Gun Maverick",
-      image: require('../../assets/melhores-filmes-2023-topgun.jpg'),
-    },
-    {
-      id: "2",
-      filme: "Top Gun Maverick",
-      image: require('../../assets/melhores-filmes-2023-topgun.jpg'),
-    },
-    {
-      id: "3",
-      filme: "Top Gun Maverick",
-      image: require('../../assets/melhores-filmes-2023-topgun.jpg'),
-    },
-    {
-      id: "4",
-      filme: "Top Gun Maverick",
-      image: require('../../assets/melhores-filmes-2023-topgun.jpg'),
-    },
-    {
-      id: "5",
-      filme: "Top Gun Maverick",
-      image: require('../../assets/melhores-filmes-2023-topgun.jpg'),
-    },
-  ];
+export const Filmes = ({ list, onPress, genre }: FlatListFilmsProps) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.filmes}>
-      <Text style={styles.text}>Assista a Filmes Gratuitos</Text>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={true}
-        style={styles.scrollView}
-      >
-        {data.map((item) => (
-          <View key={item.id} style={styles.movieContainer}>
-            <Image source={item.image} style={styles.movieImage} />
-            <Text style={styles.movieText}>{item.filme}</Text>
-          </View>
-        ))}
-      </ScrollView>
+    <>
+      <View style={styles.container}>
+        <View style={styles.containerText}>
+          <Text style={styles.title}>{genre}</Text>
+        </View>
+        <FlatList
+          data={list}
+          keyExtractor={(item, index) => `${index}`}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item, index }) => {
+            const uri = `https://image.tmdb.org/t/p/w342/${item.poster_path}`
+            return (
+              <View>
+                <TouchableOpacity onPress={() => onPress && onPress(index)}>
+                  <Image source={{ uri }} style={styles.image} />
+                </TouchableOpacity>
+                <Text numberOfLines={1} ellipsizeMode='tail' style={styles.text} >{item.title}</Text>
+              </View>
+            )
+          }}
+        />
       </View>
-    </View>
+    </>
   )
 }
