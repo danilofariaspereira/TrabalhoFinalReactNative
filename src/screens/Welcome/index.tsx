@@ -25,7 +25,7 @@ export default function Welcome({ navigation }) {
           </View>
           <View style={styles.field}>
             <TouchableOpacity
-              onPress={() => navigation.navigate('home')}
+              onPress={() => navigation.navigate('bottomTabRoutes')}
               style={styles.button}
             >
               <Text style={styles.buttonText}>Continuar</Text>

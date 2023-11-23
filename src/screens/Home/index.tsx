@@ -5,7 +5,6 @@ import Carousel from 'react-native-snap-carousel';
 import { Filmes } from "../../components/Filmes";
 import { getGenres, getGenresFilms, getSearchFilms, getTrendingFilms } from "../../services/apiTMDB";
 import Header from "../../components/Header";
-import Search from "../Search";
 
 export default function Home({ navigation }) {
     const [listTrending, setListTrendings] = useState([]);
