@@ -1,10 +1,10 @@
 import { View, Image, Text, ScrollView, ActivityIndicator } from "react-native";
 import { styles } from "./styles";
 import React, { useEffect, useRef, useState } from 'react';
-import Carousel from 'react-native-snap-carousel';
 import { Filmes } from "../../components/Filmes";
 import { getGenres, getGenresFilms, getSearchFilms, getTrendingFilms } from "../../services/apiTMDB";
 import Header from "../../components/Header";
+import { Carousel } from "../../components/Carousel";
 
 export default function Home({ navigation }) {
     const [listTrending, setListTrendings] = useState([]);
@@ -83,18 +83,14 @@ export default function Home({ navigation }) {
         navigation.navigate('details', { filmDetails: filmWithGenres });
     }
 
-
     function listDetailsFilmsSearch(filmIndex) {
         const selectedFilm = listFilmsSearch[filmIndex];
         navigation.navigate('details', { filmDetails: selectedFilm });
     }
 
-    
-
-
     return (
         <View style={styles.container}>
-            <Header onSearch={onSearch}/>
+            <Header onSearch={onSearch}/>            
             <ScrollView showsVerticalScrollIndicator={false}>
                 {isLoading ?
                     <ActivityIndicator size={"large"} color={'#156'} />
@@ -107,6 +103,7 @@ export default function Home({ navigation }) {
                     </View>
                     :
                     <>
+                    <Carousel />
                     {listGenres.map((item, index) => {
                             const genre = item.name
                             const filmsForGenre = listFilmsGenres[index];

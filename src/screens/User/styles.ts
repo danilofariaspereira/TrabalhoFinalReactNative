@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.primary,
+    backgroundColor: "#1e1e1e",
     flex: 1,
     gap: 20
 

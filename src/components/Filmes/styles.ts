@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
     containerText:{
         marginLeft: 20, 
         marginBottom: 20,
-        marginTop: 30,
         borderLeftWidth: 2,
         borderLeftColor: '#FFA500',
     },
@@ -29,7 +28,8 @@ export const styles = StyleSheet.create({
         width: 90,
         marginTop: 10,
         alignSelf: "center",
-        fontWeight: '600'
+        fontWeight: '600',
+        marginBottom: 30
     }
     
 
