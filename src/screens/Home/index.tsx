@@ -1,21 +1,39 @@
 import { View, Image, Text, ScrollView, ActivityIndicator } from "react-native";
-import { Header } from "../../components/Header";
 import { styles } from "./styles";
 import React, { useEffect, useRef, useState } from 'react';
 import Carousel from 'react-native-snap-carousel';
 import { Filmes } from "../../components/Filmes";
-import { getGenres, getGenresFilms, getTrendingFilms } from "../../services/apiTMDB";
+import { getGenres, getGenresFilms, getSearchFilms, getTrendingFilms } from "../../services/apiTMDB";
+import Header from "../../components/Header";
+import Search from "../Search";
 
 export default function Home({ navigation }) {
     const [listTrending, setListTrendings] = useState([]);
     const [listGenres, setListGenres] = useState([]);
     const [listFilmsGenres, setListFilmsGenres] = useState([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isSearch, setIsSearch] = useState<boolean>(false);
+    const [listFilmsSearch, setListFilmsSearch] = useState([]);
 
     useEffect(() => {
         listTrendingFilms();
         listByGenres();
     }, [])
+
+    const onSearch = (searchTerm: string) => {
+        if (searchTerm.length > 0) {
+            setIsSearch(true)
+
+            getSearchFilms(searchTerm).then(response => {
+                setListFilmsSearch(response.data.results)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        }else{
+            setIsSearch (false)
+        }
+    }
 
     function listTrendingFilms() {
         getTrendingFilms()
@@ -39,6 +57,7 @@ export default function Home({ navigation }) {
                     try {
                         const filmsResponse = await getGenresFilms(genre.id);
                         return filmsResponse.data.results;
+
                     } catch (error) {
                         console.log(error);
                         return [];
@@ -61,15 +80,30 @@ export default function Home({ navigation }) {
         navigation.navigate('details', { filmDetails: selectedFilm });
     }
 
+    function listDetailsFilmsSearch(filmIndex) {
+        const selectedFilm = listFilmsSearch[filmIndex];
+        navigation.navigate('details', { filmDetails: selectedFilm });
+    }
+
+    
+
+
     return (
         <View style={styles.container}>
-            <Header />
+            <Header onSearch={onSearch}/>
             <ScrollView showsVerticalScrollIndicator={false}>
                 {isLoading ?
                     <ActivityIndicator size={"large"} color={'#156'} />
                     :
                     <>
-                        {listGenres.map((item, index) => {
+                    
+                    {isSearch ?
+                    <View >
+                        <Filmes list={listFilmsSearch} onPress={(filmIndex) => listDetailsFilmsSearch(filmIndex)} genre={"Busca"} />
+                    </View>
+                    :
+                    <>
+                    {listGenres.map((item, index) => {
                             const genre = item.name
                             return (
                                 <View key={`${item.id}`}>
@@ -77,6 +111,9 @@ export default function Home({ navigation }) {
                                 </View>
                             )
                         })}
+                    </>
+                    }
+                        
                     </>
                 }
             </ScrollView>

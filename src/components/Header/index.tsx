@@ -7,7 +7,12 @@ import FlatListSearch from "../FlatListSearch";
 import Lupa from '../../assets/lupa.png'
 
 
-export const Header = () => {
+interface HeaderProps {
+  onSearch:(text) => void
+}
+
+
+export default function Header({onSearch}: HeaderProps) {
   const [searchText, setSearchText] = useState("");
   const [listFilms, setListFilms] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -25,6 +30,12 @@ export const Header = () => {
       })
   }
 
+  function search(text){
+    setSearchText(text)
+    onSearch(text)
+        
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.img}>
@@ -38,7 +49,7 @@ export const Header = () => {
           keyboardType="default"
           textAlignVertical='center'
           style={styles.input}
-          onChangeText={(text) => setSearchText(text)}
+          onChangeText={(text) => search(text)}
         // value={value}
         // autoCapitalize="none"
         // onChangeText={onChangeText}
