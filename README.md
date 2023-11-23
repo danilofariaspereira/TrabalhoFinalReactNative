@@ -8,7 +8,7 @@ Navigation -> npm install @react-navigation/native npx expo install react-native
 
 Axios -> npm install axios
 
-Carousel -> npm install react-native-snap-carousel@latest
+Bottom Tabs Navigator -> npm install @react-navigation/bottom-tabs
 
 -------------------
 
