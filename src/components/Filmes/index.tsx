@@ -11,6 +11,8 @@ interface FlatListFilmsProps {
 }
 
 export const Filmes = ({ list, onPress, genre }: FlatListFilmsProps) => {
+  const limitedList = list.slice(0, 5);
+
   return (
     <>
       <View style={styles.container}>
@@ -18,7 +20,7 @@ export const Filmes = ({ list, onPress, genre }: FlatListFilmsProps) => {
           <Text style={styles.title}>{genre}</Text>
         </View>
         <FlatList
-          data={list}
+          data={limitedList}
           keyExtractor={(item, index) => `${index}`}
           horizontal
           showsHorizontalScrollIndicator={false}

@@ -18,9 +18,9 @@ export const styles = StyleSheet.create({
   
   },
   image: {
-    width: 120,
+    width: 170,
     height: 120,
-    marginBottom: 50,
+    marginBottom: 90,
   },
   field: {
     padding: 15,

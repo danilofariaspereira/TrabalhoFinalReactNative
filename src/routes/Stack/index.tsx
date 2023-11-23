@@ -4,7 +4,6 @@ import login from '../../screens/Login/index';
 import cadastro from '../../screens/Register/index';
 import welcome from '../../screens/Welcome/index';
 import home from '../../screens/Home'
-import search from '../../screens/Search';
 import details from '../../screens/Details'
 import bottomTabRoutes from '../BottomTabs'
 

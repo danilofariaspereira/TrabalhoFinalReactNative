@@ -77,8 +77,13 @@ export default function Home({ navigation }) {
 
     function listDetailsFilms(genreIndex, filmIndex) {
         const selectedFilm = listFilmsGenres[genreIndex][filmIndex];
-        navigation.navigate('details', { filmDetails: selectedFilm });
+        const filmWithGenres = {
+            ...selectedFilm,
+            genres: listGenres.filter(genre => selectedFilm.genre_ids.includes(genre.id)),
+        };
+        navigation.navigate('details', { filmDetails: filmWithGenres });
     }
+
 
     function listDetailsFilmsSearch(filmIndex) {
         const selectedFilm = listFilmsSearch[filmIndex];
@@ -105,9 +110,13 @@ export default function Home({ navigation }) {
                     <>
                     {listGenres.map((item, index) => {
                             const genre = item.name
+                            const filmsForGenre = listFilmsGenres[index];
+
                             return (
                                 <View key={`${item.id}`}>
-                                    <Filmes list={listFilmsGenres[index]} onPress={(filmIndex) => listDetailsFilms(index, filmIndex)} genre={genre} />
+                                    {filmsForGenre && (
+                                        <Filmes list={filmsForGenre} onPress={(filmIndex) => listDetailsFilms(index, filmIndex)} genre={genre} />
+                                    )}
                                 </View>
                             )
                         })}
