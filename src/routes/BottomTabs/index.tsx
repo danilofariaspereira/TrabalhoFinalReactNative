@@ -19,7 +19,7 @@ function BottomTabRoutes() {
       tabBarStyle: { backgroundColor: '#000', paddingBottom: 2 },
       tabBarInactiveTintColor: '#aaa',
       tabBarActiveTintColor: '#fff',
-      tabBarLabel:""
+      tabBarLabel: ""
     }}>
       <Tab.Screen name="Home" component={Home} options={{
         headerShown: false,
@@ -27,12 +27,12 @@ function BottomTabRoutes() {
           <Ionicons name="home" color={color} size={size} />
         ),
       }} />
-      <Tab.Screen name="Profile" component={Profile} options={{ 
+      <Tab.Screen name="Profile" component={Profile} options={{
         headerShown: false,
         tabBarIcon: ({ color, size }) => (
           <Ionicons name="person" color={color} size={size} />
         ),
-      }}  />
+      }} />
     </Tab.Navigator>
   );
 }

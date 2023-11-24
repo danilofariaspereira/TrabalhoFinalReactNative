@@ -1,27 +1,27 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    container:{
+    container: {
         flex: 1,
     },
-    image:{
+    image: {
         width: 110,
         height: 150,
         marginLeft: 20,
         borderRadius: 10
     },
-    containerText:{
-        marginLeft: 20, 
+    containerText: {
+        marginLeft: 20,
         marginBottom: 20,
         borderLeftWidth: 2,
         borderLeftColor: '#FFA500',
     },
-    title:{        
+    title: {
         color: 'white',
         fontSize: 22,
         marginLeft: 10
     },
-    text:{
+    text: {
         color: 'white',
         fontSize: 14,
         marginLeft: 20,
@@ -31,6 +31,4 @@ export const styles = StyleSheet.create({
         fontWeight: '600',
         marginBottom: 30
     }
-    
-
 })

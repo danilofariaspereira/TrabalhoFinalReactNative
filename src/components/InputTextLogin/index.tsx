@@ -25,7 +25,7 @@ export const InputTextLogin = ({ title, value, editable, secureContent, onChange
           value={value}
           autoCapitalize="none"
           onChangeText={onChangeText}
-                 />
+        />
         <Ionicons
           onPress={() => onPress(!secureContent)}
           style={styles.eye}
@@ -43,7 +43,7 @@ export const InputTextLogin = ({ title, value, editable, secureContent, onChange
           autoCapitalize="none"
           onChangeText={onChangeText}
           editable={editable}
-           
+
         />
       </View>
     )

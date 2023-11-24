@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View, Image, FlatList } from "react-native";
 import { styles } from "./styles";
 
@@ -17,15 +17,11 @@ export default function FlatListSearch({ list }: FlatListFilmsProps) {
             renderItem={({ item }) => {
                 const uri = `https://image.tmdb.org/t/p/w342/${item.poster_path}`
                 return (
-                    <>
-                        <View style={styles.container}>
-                            <Image source={{ uri }} style={styles.container} />
-                        </View>
-                    </>
+                    <View style={styles.container}>
+                        <Image source={{ uri }} style={styles.container} />
+                    </View>
                 )
             }}
         />
-
-
     );
 };

@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
-import Logo from '../../assets/LogoApp1.png'
-import { Ionicons } from "@expo/vector-icons";
+import React, { useContext, useEffect, useState } from "react";
+import { View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Platform, } from "react-native";
 import { styles } from "./styles";
 import { InputTextLogin } from "../../components/InputTextLogin";
 import { PrimaryButton } from "../../components/PrimaryButton";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import save, { api } from "../../services/apiUser";
-import RNFS from 'react-native-fs';
+import save from "../../services/apiUser";
 import ImageClaquete from "../../components/ImageClaquete";
+import AuthContext from "../../context/auth";
 
 
 export default function Register({ navigation }) {
@@ -28,28 +15,7 @@ export default function Register({ navigation }) {
   const [rePassword, setRePassword] = useState("");
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
-
-
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      "keyboardDidShow",
-      () => {
-        setKeyboardVisible(true);
-      }
-    );
-    const keyboardDidHideListener = Keyboard.addListener(
-      "keyboardDidHide",
-      () => {
-        setKeyboardVisible(false);
-      }
-    );
-
-    return () => {
-      keyboardDidHideListener.remove();
-      keyboardDidShowListener.remove();
-    };
-  }, []); // ajuste no keyboard
+  const { verifyRegister } = useContext(AuthContext)
 
   const validarEmail = (email: string) => {
     var re =
@@ -61,7 +27,7 @@ export default function Register({ navigation }) {
     return senha.length >= 6;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (
       email === "" ||
       username === "" ||
@@ -78,13 +44,19 @@ export default function Register({ navigation }) {
     } else if (password !== rePassword) {
       setMessage("As senhas não coincidem!");
     } else {
-      setMessage("");
-      save(username, email, password);
-      navigation.navigate('welcome'); //quais dados estão armazendo
-      setPassword("");
-      setUsername("");
-      setEmail("");
-      setRePassword("");
+      const registro = await verifyRegister(email);
+      {console.log(registro)}
+      if (registro != null) {
+        setMessage("Email já cadastrado");
+      } else {
+        setMessage("");
+        save(username, email, password);
+        navigation.navigate('welcome');
+        setPassword("");
+        setUsername("");
+        setEmail("");
+        setRePassword("");
+      }
     }
   };
 

@@ -14,41 +14,31 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: colors.primary,
     flex: 1,
-    gap: 20,
-  
+    gap: 20
   },
   image: {
     width: 170,
     height: 120,
-    marginBottom: 90,
+    marginBottom: 40,
   },
   field: {
-    padding: 15,
-    paddingVertical: 14,
-    position: "relative",
+   width: '90%',
+   alignItems: "center"
   },
-
   heading: {
     fontSize: 32,
     fontWeight: "bold",
     textAlign: "center",
     color: colors.secondary,
-    marginTop: -60,
   },
-  button: {
-    borderRadius: 5,
-    alignItems: "center",
-    backgroundColor: colors.tertiary,
-    padding: 15,
-  },
-  buttonText: {
-    textAlign: "center",
-    fontWeight: "bold",
-    color: colors.primary,
-    fontSize: 15,
-  },  
   text: {
     color: colors.secondary,
     fontSize: 15,
+    marginTop: 20
+  },
+  button: {
+   width: '100%',
+   alignItems: "center",
+   marginTop: 10
   }
 });

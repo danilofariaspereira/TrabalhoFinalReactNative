@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
+import { View, TouchableOpacity, Image, TextInput } from "react-native";
 import { styles } from "./styles";
 import Logo from "../../assets/LogoApp1.png"
 import { getSearchFilms } from "../../services/apiTMDB";
 import FlatListSearch from "../FlatListSearch";
 import Lupa from '../../assets/lupa.png'
 
-
 interface HeaderProps {
-  onSearch:(text) => void
+  onSearch: (text: string) => void
 }
 
-
-export default function Header({onSearch}: HeaderProps) {
+export default function Header({ onSearch }: HeaderProps) {
   const [searchText, setSearchText] = useState("");
   const [listFilms, setListFilms] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -30,10 +28,10 @@ export default function Header({onSearch}: HeaderProps) {
       })
   }
 
-  function search(text){
+  function search(text: string) {
     setSearchText(text)
     onSearch(text)
-        
+
   }
 
   return (
@@ -50,16 +48,11 @@ export default function Header({onSearch}: HeaderProps) {
           textAlignVertical='center'
           style={styles.input}
           onChangeText={(text) => search(text)}
-        // value={value}
-        // autoCapitalize="none"
-        // onChangeText={onChangeText}
-        // editable={editable} 
         />
         <TouchableOpacity onPress={() => listSearchFilms(searchText)}>
           <Image source={Lupa} style={styles.icon} />
         </TouchableOpacity>
       </View>
-
     </View >
   );
 };

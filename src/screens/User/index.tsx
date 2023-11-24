@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  View,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Image,
-  KeyboardAvoidingView,
-} from "react-native";
+import { View, TouchableWithoutFeedback, Keyboard, Image, KeyboardAvoidingView } from "react-native";
 
 import { styles } from "./styles";
 import { InputTextLogin } from "../../components/InputTextLogin";
@@ -46,9 +40,7 @@ export default function User({ navigation }) {
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <KeyboardAvoidingView
-        style={styles.container}
-      >
+      <KeyboardAvoidingView style={styles.container}>
         <Image source={Profile} style={styles.image} />
         <View style={styles.textInput}>
           <InputTextLogin title="Nome de usuário" value={username} editable={false} onChangeText={setUsername} />

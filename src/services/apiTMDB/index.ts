@@ -18,12 +18,6 @@ interface getGenresResponse {
     }>
 }
 
-export function getTrendingFilms(): Promise<AxiosResponse<getFilmsResponse, any>> {
-    const url = `trending/all/week?${apiKey}&${language}&page=${1}`
-
-    return apiTMDB.get(url)
-}
-
 export function getGenres(): Promise<AxiosResponse<getGenresResponse, any>> {
     const url = `/genre/movie/list?${apiKey}&${language}`
 

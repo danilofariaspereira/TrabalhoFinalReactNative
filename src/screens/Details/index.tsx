@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { Text, ScrollView, Image, View, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import ArrowIcon from '../../assets/leftArrowIcon.png'
-import { useNavigation } from "@react-navigation/native";
 import StarIcon from '../../assets/starIcon.png'
 
 export default function Details({ route, navigation }) {
     const { filmDetails } = route.params;
     const uri = `https://image.tmdb.org/t/p/w342/${filmDetails.poster_path}`;
-    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const formatReleaseDate = (dateString: string) => {
         const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };

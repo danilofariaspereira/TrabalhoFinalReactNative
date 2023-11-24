@@ -6,15 +6,15 @@ const DATA = [
   { image: require('../../assets/Jung.png') },
   { image: require('../../assets/Abracadabra.png') },
   { image: require('../../assets/Megan.png') },
-  { image: require('../../assets/Aquaman.png') },
-  { image: require('../../assets/Horton.png') },
-  { image: require('../../assets/Awareness.png') },
-  { image: require('../../assets/DeathNote.png') },
-  { image: require('../../assets/Dune.png') },
-  { image: require('../../assets/JohnWick.png') },
-  { image: require('../../assets/Jujutsu.png') },
-  { image: require('../../assets/Hobbit.png') },
-  { image: require('../../assets/OlhosFamintos.png') },
+  // { image: require('../../assets/Aquaman.png') },
+  // { image: require('../../assets/Horton.png') },
+  // { image: require('../../assets/Awareness.png') },
+  // { image: require('../../assets/DeathNote.png') },
+  // { image: require('../../assets/Dune.png') },
+  // { image: require('../../assets/JohnWick.png') },
+  // { image: require('../../assets/Jujutsu.png') },
+  // { image: require('../../assets/Hobbit.png') },
+  // { image: require('../../assets/OlhosFamintos.png') },
 ];
 
 export const Carousel = () => {
@@ -38,7 +38,7 @@ export const Carousel = () => {
 
   useEffect(() => {
     const totalBanners = DATA.length;
-  
+
     const handleCarouselLoop = () => {
       if (activeBanner === totalBanners - 1) {
         flatListRef.current?.scrollToIndex({
@@ -54,9 +54,9 @@ export const Carousel = () => {
         setActiveBanner((old) => old + 1);
       }
     };
-  
+
     const timeoutId = setTimeout(handleCarouselLoop, 3000);
-  
+
     return () => clearTimeout(timeoutId);
   }, [activeBanner]);
 

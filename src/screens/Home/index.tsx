@@ -1,13 +1,12 @@
-import { View, Image, Text, ScrollView, ActivityIndicator } from "react-native";
+import { View, ScrollView, ActivityIndicator } from "react-native";
 import { styles } from "./styles";
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Filmes } from "../../components/Filmes";
-import { getGenres, getGenresFilms, getSearchFilms, getTrendingFilms } from "../../services/apiTMDB";
+import { getGenres, getGenresFilms, getSearchFilms } from "../../services/apiTMDB";
 import Header from "../../components/Header";
 import { Carousel } from "../../components/Carousel";
 
 export default function Home({ navigation }) {
-    const [listTrending, setListTrendings] = useState([]);
     const [listGenres, setListGenres] = useState([]);
     const [listFilmsGenres, setListFilmsGenres] = useState([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -15,7 +14,6 @@ export default function Home({ navigation }) {
     const [listFilmsSearch, setListFilmsSearch] = useState([]);
 
     useEffect(() => {
-        listTrendingFilms();
         listByGenres();
     }, [])
 
@@ -26,25 +24,12 @@ export default function Home({ navigation }) {
             getSearchFilms(searchTerm).then(response => {
                 setListFilmsSearch(response.data.results)
             })
-            .catch(error => {
-                console.log(error);
-            })
-        }else{
-            setIsSearch (false)
+                .catch(error => {
+                    console.log(error);
+                })
+        } else {
+            setIsSearch(false)
         }
-    }
-
-    function listTrendingFilms() {
-        getTrendingFilms()
-            .then(response => {
-                setListTrendings(response.data.results)
-            })
-            .catch(error => {
-                console.log(error);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            })
     }
 
     function listByGenres() {
@@ -90,35 +75,34 @@ export default function Home({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Header onSearch={onSearch}/>            
+            <Header onSearch={onSearch} />
             <ScrollView showsVerticalScrollIndicator={false}>
                 {isLoading ?
                     <ActivityIndicator size={"large"} color={'#156'} />
                     :
                     <>
-                    
-                    {isSearch ?
-                    <View >
-                        <Filmes list={listFilmsSearch} onPress={(filmIndex) => listDetailsFilmsSearch(filmIndex)} genre={"Busca"} />
-                    </View>
-                    :
-                    <>
-                    <Carousel />
-                    {listGenres.map((item, index) => {
-                            const genre = item.name
-                            const filmsForGenre = listFilmsGenres[index];
+                        {isSearch ?
+                            <View >
+                                <Filmes list={listFilmsSearch} onPress={(filmIndex) => listDetailsFilmsSearch(filmIndex)} genre={"Busca"} />
+                            </View>
+                            :
+                            <>
+                                <Carousel />
+                                {listGenres.map((item, index) => {
+                                    const genre = item.name
+                                    const filmsForGenre = listFilmsGenres[index];
 
-                            return (
-                                <View key={`${item.id}`}>
-                                    {filmsForGenre && (
-                                        <Filmes list={filmsForGenre} onPress={(filmIndex) => listDetailsFilms(index, filmIndex)} genre={genre} />
-                                    )}
-                                </View>
-                            )
-                        })}
-                    </>
-                    }
-                        
+                                    return (
+                                        <View key={`${item.id}`}>
+                                            {filmsForGenre && (
+                                                <Filmes list={filmsForGenre} onPress={(filmIndex) => listDetailsFilms(index, filmIndex)} genre={genre} />
+                                            )}
+                                        </View>
+                                    )
+                                })}
+                            </>
+                        }
+
                     </>
                 }
             </ScrollView>

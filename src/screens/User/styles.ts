@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
     backgroundColor: "#1e1e1e",
     flex: 1,
     gap: 20
-
   },
   image: {
     width: 150,
@@ -26,11 +25,6 @@ export const styles = StyleSheet.create({
   textInput: {
     width: '80%',
     gap: 20
-  },
-  button:{
-    width: '100%',
-    alignItems: "center"
   }
-  
 });
 

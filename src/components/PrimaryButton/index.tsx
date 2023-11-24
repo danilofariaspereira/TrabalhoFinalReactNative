@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-    Text,
-    TouchableOpacity,
-} from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import { styles } from './styles';
 
 interface PrimaryButtonProps {
@@ -10,7 +7,7 @@ interface PrimaryButtonProps {
     title: string
 }
 
-export const PrimaryButton = ({onPress, title} : PrimaryButtonProps) => {
+export const PrimaryButton = ({ onPress, title }: PrimaryButtonProps) => {
     return (
         <TouchableOpacity onPress={onPress} style={styles.button}>
             <Text style={styles.text}>{title}</Text>

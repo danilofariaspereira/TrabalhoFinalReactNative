@@ -1,29 +1,29 @@
 import { StyleSheet, Platform } from "react-native";
 
 export const styles = StyleSheet.create({
-    container:{
-        zIndex:1,
+    container: {
+        zIndex: 1,
         width: '100%',
-        flexDirection:'row',
+        flexDirection: 'row',
         backgroundColor: '#000',
-        justifyContent:'space-between',
+        justifyContent: 'space-between',
         alignItems: "center",
         padding: 8,
         paddingTop: Platform.OS === 'ios' ? 60 : 0
     },
-    logo:{
+    logo: {
         height: 60,
         width: 90,
         marginLeft: 40
     },
-    img:{
-        flexDirection:'row',
+    img: {
+        flexDirection: 'row',
         justifyContent: 'center',
         alignSelf: 'center',
         width: '20%',
         height: '100%',
     },
-    input:{
+    input: {
         backgroundColor: '#424242',
         height: 35,
         width: 190,
@@ -34,10 +34,10 @@ export const styles = StyleSheet.create({
     },
     icon: {
         width: 25,
-        height: 25,    
-        marginRight: 5    
+        height: 25,
+        marginRight: 5
     },
-    search:{
+    search: {
         flexDirection: "row",
         alignItems: "center",
         paddingRight: 5,

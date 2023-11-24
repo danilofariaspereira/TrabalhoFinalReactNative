@@ -21,8 +21,6 @@ const save = async (username, email, password) => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const result = await response.json();
-    console.log(result);
   } catch (error) {
     console.error('Error:', error);
   }

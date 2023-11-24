@@ -1,4 +1,4 @@
-import { View, Image, Text, ScrollView, FlatList, TouchableOpacity } from "react-native";
+import { View, Image, Text, FlatList, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 
 interface FlatListFilmsProps {

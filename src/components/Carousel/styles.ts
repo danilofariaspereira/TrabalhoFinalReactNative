@@ -7,9 +7,6 @@ export const styles = StyleSheet.create({
   container: {
     height: 250
   },
-  containerCard: {
-    width: width,
-  },
   flatListImage: {
     height: 220,
     marginBottom: 10

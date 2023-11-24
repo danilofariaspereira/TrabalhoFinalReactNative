@@ -18,10 +18,10 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     color: colors.secondary,
   },
-  title:{
+  title: {
     color: 'white'
   },
-  eye:{
+  eye: {
     position: "absolute",
     right: 0,
     bottom: 0,
