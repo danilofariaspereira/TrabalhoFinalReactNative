@@ -18,7 +18,8 @@ export const styles = StyleSheet.create({
         borderRadius: 5
     },
     text:{
-        fontSize: 16
+        fontSize: 16,
+        fontWeight: '600'
     }
 });
 

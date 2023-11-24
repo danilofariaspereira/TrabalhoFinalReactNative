@@ -18,15 +18,19 @@ export const styles = StyleSheet.create({
 
   },
   image: {
-    width: 120,
-    height: 120,
-    marginBottom: 80,
-    marginTop: 60,
+    width: 150,
+    height: 150,
+    marginBottom: 60,
+    borderRadius: 50
   },
   textInput: {
     width: '80%',
     gap: 20
   },
+  button:{
+    width: '100%',
+    alignItems: "center"
+  }
   
 });
 

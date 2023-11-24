@@ -16,6 +16,10 @@ import { styles } from "./styles";
 import { InputTextLogin } from "../../components/InputTextLogin";
 import { PrimaryButton } from "../../components/PrimaryButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import save, { api } from "../../services/apiUser";
+import RNFS from 'react-native-fs';
+import ImageClaquete from "../../components/ImageClaquete";
+
 
 export default function Register({ navigation }) {
   const [email, setEmail] = useState("");
@@ -57,16 +61,6 @@ export default function Register({ navigation }) {
     return senha.length >= 6;
   };
 
-  const storeData = async (username, email, password) => {
-    try {
-      const jsonValue = JSON.stringify({ username, email, password });
-      await AsyncStorage.setItem('user-data', jsonValue);
-    } catch (e) {
-      // saving error
-      console.log(e);
-    }
-  }; // ajuste para guardar no StorageData
-
   const handleSubmit = () => {
     if (
       email === "" ||
@@ -85,8 +79,8 @@ export default function Register({ navigation }) {
       setMessage("As senhas não coincidem!");
     } else {
       setMessage("");
-      storeData(username, email, password);
-      navigation.navigate('login'); //quais dados estão armazendo
+      save(username, email, password);
+      navigation.navigate('welcome'); //quais dados estão armazendo
       setPassword("");
       setUsername("");
       setEmail("");
@@ -97,9 +91,10 @@ export default function Register({ navigation }) {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.container}
       >
-        <Image source={Logo} style={styles.image} />
+        <ImageClaquete />
         <Text style={styles.message}>{message}</Text>
         <View style={styles.textInput}>
           <InputTextLogin title="Nome de usuário" value={username} onChangeText={setUsername} />
@@ -118,5 +113,3 @@ export default function Register({ navigation }) {
     </TouchableWithoutFeedback>
   );
 };
-
-

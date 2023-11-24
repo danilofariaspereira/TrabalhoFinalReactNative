@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { styles } from "./styles";
 
 export default function Welcome({ navigation }) {
+   
   return (
     <>
       <View style={styles.container}>
@@ -25,7 +26,7 @@ export default function Welcome({ navigation }) {
           </View>
           <View style={styles.field}>
             <TouchableOpacity
-              onPress={() => navigation.navigate('bottomTabRoutes')}
+              onPress={() => navigation.navigate('login')}
               style={styles.button}
             >
               <Text style={styles.buttonText}>Continuar</Text>

@@ -1,0 +1,28 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "username": "exemploUsuario",
+      "email": "usuario@exemplo.com",
+      "password": "senhaCriptografada"
+    },
+    {
+      "username": "let",
+      "email": "let@gmail.com",
+      "password": "gubduz-9kuvqe-qyZxen",
+      "id": 2
+    },
+    {
+      "username": "let",
+      "email": "let@gmail.com",
+      "password": "gugdyq-giqtyr-1ziQci",
+      "id": 3
+    },
+    {
+      "username": "leticia",
+      "email": "leticia@gmail.com",
+      "password": "123456",
+      "id": 4
+    }
+  ]
+}

@@ -4,6 +4,6 @@ export const styles = StyleSheet.create({
   image: {
     width: 150,
     height: 150,
-    marginBottom: 50
+    marginBottom: 140
   }
 });
