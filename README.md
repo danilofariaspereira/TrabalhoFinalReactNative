@@ -1,4 +1,7 @@
 # TrabalhoFinal-ReactNative
+![Capturar3](https://github.com/danilofariaspereira/TrabalhoFinalReactNative/assets/143275664/4e762dba-dcbc-4056-97c6-e893b874320a)
+![Capturar4](https://github.com/danilofariaspereira/TrabalhoFinalReactNative/assets/143275664/3de829b4-96e7-4511-b53d-4df9cdf4e434)
+
 
 instalações dependências:
 
