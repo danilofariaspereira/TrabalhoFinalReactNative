@@ -1,6 +1,8 @@
 # TrabalhoFinal-ReactNative
-![Capturar3](https://github.com/danilofariaspereira/TrabalhoFinalReactNative/assets/143275664/4e762dba-dcbc-4056-97c6-e893b874320a)
-![Capturar4](https://github.com/danilofariaspereira/TrabalhoFinalReactNative/assets/143275664/3de829b4-96e7-4511-b53d-4df9cdf4e434)
+
+![IMG_5932](https://github.com/danilofariaspereira/TrabalhoFinalReactNative/assets/143275664/af70bc21-4bcf-4b90-9a49-7496aded3563)
+![IMG_5934](https://github.com/danilofariaspereira/TrabalhoFinalReactNative/assets/143275664/dc3eddf9-9679-4206-95ff-417aea135971)
+![IMG_5933](https://github.com/danilofariaspereira/TrabalhoFinalReactNative/assets/143275664/0f0606e7-1dfe-420b-abf4-b766d23b5b56)
 
 
 instalações dependências:
